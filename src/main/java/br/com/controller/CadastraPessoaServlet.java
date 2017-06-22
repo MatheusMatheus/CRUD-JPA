@@ -3,6 +3,7 @@ package br.com.controller;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,6 +46,9 @@ public class CadastraPessoaServlet extends HttpServlet{
 		
 		PessoaDAO dao = new PessoaDAO();
 		dao.inserir(pessoa);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("lista-pessoas.jsp");
+		dispatcher.forward(request, response);
 		
 	}
 }

@@ -1,0 +1,29 @@
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table, th, tr {
+	text-align: center;
+}
+
+
+th {
+	height: 50px;
+}
+
+tr {
+	height: 40px;
+}
+
+tr:nth-child(odd) {
+	background-color: #DCDCDC;
+}
+
+tr:hover:not(:nth-child(1)) {
+	background-color: #1E90FF;
+}
+
+tr:nth-child(1) {
+	background-color: #008000;
+}

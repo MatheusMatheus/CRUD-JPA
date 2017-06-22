@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Pessoa implements EntidadeAutent {
+public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -21,12 +21,10 @@ public class Pessoa implements EntidadeAutent {
 	private LocalDate dataNasc;
 	private char sexo;
 
-	@Override
 	public long getId() {
 		return 0;
 	}
 
-	@Override
 	public void setId(long id) {
 		this.id = id;
 
