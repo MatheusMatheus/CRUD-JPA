@@ -1,2 +1,2 @@
-# CRUD-JPA
+# CRUD
 CRUD básico com JPA e JSP
