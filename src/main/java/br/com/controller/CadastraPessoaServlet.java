@@ -37,10 +37,7 @@ public class CadastraPessoaServlet extends HttpServlet{
 		endereco.setNumero(numero);
 		
 		Pessoa pessoa = new Pessoa();
-		pessoa.setCpf(cpf);
-		pessoa.setDataNasc(dataNasc);
 		pessoa.setNome(nome);
-		pessoa.setSexo(sexo);
 		pessoa.setTelefone(telefone);
 		pessoa.setEndereco(endereco);
 		
