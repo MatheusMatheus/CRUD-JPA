@@ -46,18 +46,16 @@ public class TestaConexao {
 	
 	public static void main(String[] args) {
 		Endereco end1 = criaEnd("72302108", "Taguatinga", "Rua dos bobos", 0);
-		Endereco end2 = criaEnd("4649879", "Tocantins", "Rua 50", 30);
-		
-		Pessoa pf1 = criaPF(end1, "Matheus", "953295623", "04408803197");
-		Pessoa pf2 = criaPF(end2, "Joana", "15313513513", "12345678950");
-		
 		
 		Curso c1 = criaCurso("Enchedor de pneu de trem", 658);
-		c1.adiciona((PessoaFisica)pf1);
-		c1.adiciona((PessoaFisica)pf2);
+		PessoaFisica pf1 = criaPF(end1, "Matheus", "953295623", "04408803197");
+		pf1.addCurso(c1);
 		
-		PessoaDAO dao = new PessoaDAO();
-		dao.inserir(pf1);
-		dao.inserir(pf2);
+	
+		Curso c2 = criaCurso("Costurador de calcinhas de couro", 365);
+		CursoDAO cdao = new 
+		/*		PessoaDAO dao = new PessoaDAO();
+		dao.inserir(pf1);*/
+		
 	}
 }

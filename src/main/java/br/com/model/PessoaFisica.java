@@ -1,14 +1,12 @@
 package br.com.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 @DiscriminatorValue("Pessoa Fisica")
@@ -16,17 +14,32 @@ public class PessoaFisica extends Pessoa {
 
 	private String cpf;
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "curso_id", referencedColumnName = "id", unique = true)
-	private Curso curso;
-
-
-	public Curso getCurso() {
-		return curso;
+	// pessoas se refere à lista de pessoas na classe Curso
+	@ManyToMany(mappedBy="pessoas", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<Curso> cursos;
+	
+	public PessoaFisica() {
+		this.cursos = new HashSet<Curso>();
+	}
+	
+	public void addCurso(Curso curso) {
+		getCursos().add(curso);
+		curso.getPessoas().add(this);
+	}
+	
+	public void removerCurso(Curso curso) {
+		getCursos().remove(curso);
+		curso.getPessoas().remove(this);
+	}
+	
+	public void remove() {
+		for(Curso c : new HashSet<Curso>()) {
+			removerCurso(c);
+		}
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public Set<Curso> getCursos() {
+		return cursos;
 	}
 
 	public String getCpf() {
@@ -36,5 +49,4 @@ public class PessoaFisica extends Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 }

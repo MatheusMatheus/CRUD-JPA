@@ -1,9 +1,7 @@
 package br.com.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,27 +9,45 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Curso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long cid;
 	private String nome;
 	private int duracao;
 
-	@OneToMany(mappedBy = "curso")
-	private List<PessoaFisica> pessoas;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+
+	// Criará uma tabela associativa
+	@JoinTable(
+			// Nome da tabela associativa
+			name = "curso_pessoa",
+
+			// Configurações da primeira coluna da tab. assoc.
+			joinColumns = @JoinColumn(
+					// Nome do campo
+					name = "curso_id",
+
+					// Nome do campo da tabela/classe a que se refere.
+					// Este id é da classe Curso
+					referencedColumnName = "cid"),
+
+			// Configurações da segunda coluna da tab. assoc.
+			inverseJoinColumns = @JoinColumn(
+					// Nome do campo
+					name = "pessoa_id",
+
+					// Nome do campo da tabela/classe a que se refere.
+					// Este id é da classe PessoaFisica
+					referencedColumnName = "id"))
+	private Set<Pessoa> pessoas;
 
 	public Curso() {
-		this.pessoas = new ArrayList<PessoaFisica>();
-	}
-
-	public void adiciona(PessoaFisica p) {
-		getPessoas().add(p);
-		p.setCurso(this);
+		this.pessoas = new HashSet<Pessoa>();
 	}
 
 	@Override
@@ -40,16 +56,23 @@ public class Curso {
 		sb.append("\nID: " + getId());
 		sb.append("\nNome: " + getNome());
 		sb.append("\nDuração: " + getDuracao());
-		sb.append("\nPessoas\n" + getPessoas());
 		return super.toString();
 	}
 
-	public long getId() {
-		return id;
+	public long getCid() {
+		return cid;
 	}
 
-	public List<PessoaFisica> getPessoas() {
+	public void setCid(long cid) {
+		this.cid = cid;
+	}
+
+	public Set<Pessoa> getPessoas() {
 		return pessoas;
+	}
+
+	public long getId() {
+		return cid;
 	}
 
 	public String getNome() {
