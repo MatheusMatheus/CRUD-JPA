@@ -56,7 +56,7 @@ public class Curso {
 		sb.append("\nID: " + getId());
 		sb.append("\nNome: " + getNome());
 		sb.append("\nDuração: " + getDuracao());
-		return super.toString();
+		return sb.toString();
 	}
 
 	public long getCid() {
