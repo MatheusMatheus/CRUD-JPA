@@ -8,6 +8,16 @@ public class Endereco {
 	private String logradouro;
 	private int numero;
 	private String cidade;
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\nCEP: " + getCep());
+		sb.append("\nLogradouro: " + getLogradouro());
+		sb.append("\nNúmero: " + getNumero());
+		sb.append("\nCidade: " + getCidade());
+		return sb.toString();
+	}
 
 	public String getCep() {
 		return cep;

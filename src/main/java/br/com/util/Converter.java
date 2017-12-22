@@ -6,6 +6,8 @@ import java.time.format.DateTimeParseException;
 
 public class Converter {
 	public static java.sql.Date localDateToSQLDate(LocalDate data) {
+		if(data == null)
+			return null;
 		return java.sql.Date.valueOf(data);
 	}
 	
@@ -20,7 +22,6 @@ public class Converter {
 		try {
 			return LocalDate.parse(data, formatter);
 		} catch (DateTimeParseException e) {
-			System.out.println("Houve um erro ao converter a data");
 			return LocalDate.now();
 		} 
 	}

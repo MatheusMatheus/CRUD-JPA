@@ -10,13 +10,18 @@ table, th, tr {
 
 th {
 	height: 50px;
+	background-color: #8B0000;
 }
 
 tr {
 	height: 40px;
 }
 
-tr:nth-child(odd) {
+tr:nth-child(1) {
+	background-color: #008000;
+}
+
+tr:nth-child(even) {
 	background-color: #DCDCDC;
 }
 
@@ -24,6 +29,3 @@ tr:hover:not(:nth-child(1)) {
 	background-color: #1E90FF;
 }
 
-tr:nth-child(1) {
-	background-color: #008000;
-}

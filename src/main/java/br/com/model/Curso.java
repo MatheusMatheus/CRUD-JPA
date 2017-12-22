@@ -21,7 +21,6 @@ public class Curso {
 	private int duracao;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-
 	// Criará uma tabela associativa
 	@JoinTable(
 			// Nome da tabela associativa

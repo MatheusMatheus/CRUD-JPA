@@ -14,6 +14,9 @@ public abstract class EntidadeAutent {
 	@Id
 	@GeneratedValue
 	protected long id;
-	abstract long getId();
 	
+
+	public long getId() {
+		return this.id;
+	}
 }

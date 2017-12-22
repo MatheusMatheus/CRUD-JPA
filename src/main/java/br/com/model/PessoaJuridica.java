@@ -8,6 +8,13 @@ import javax.persistence.Entity;
 public class PessoaJuridica extends Pessoa {
 	
 	private String cnpj;
+	
+	public PessoaJuridica() {
+	}
+	
+	public PessoaJuridica(String nome, String telefone, String email) {
+		super(nome, telefone, email);
+	}
 
 	public String getCnpj() {
 		return cnpj;

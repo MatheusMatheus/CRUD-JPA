@@ -10,16 +10,19 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
-
 public abstract class DAO<T, I extends Serializable> {
-	protected EntityManagerFactory factory = Persistence.createEntityManagerFactory("CRUD2");
-	protected EntityManager manager = factory.createEntityManager();
+
+	protected EntityManager manager;
 	
 	private Class<T> persistedClass;
+	
+	public DAO() {
+	}
 
-	public DAO(Class<T> persistedClass) {
-		super();
+	public DAO(Class<T> persistedClass, EntityManager manager) {
+		this();
 		this.persistedClass = persistedClass;
+		this.manager = manager;
 	}
 
 	public void inserir(T entidade) {
@@ -52,16 +55,10 @@ public abstract class DAO<T, I extends Serializable> {
 		tx.commit();
 	}
 	
-	public List<T> getList() {
+	public List<T> getLista() {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<T> query = builder.createQuery(persistedClass);
 		query.from(persistedClass);
 		return manager.createQuery(query).getResultList();
 	}
-	
-	public void close() {
-		manager.close();
-		factory.close();
-	}
-	
 }

@@ -12,19 +12,7 @@
 </head>
 <body>
 	<table>
-	<%
-		DAO<Curso, Long> dao = new CursoDAO();
-		List<Curso> cursos = dao.getList();
-		
-		for(Curso c : cursos) {
-		%>
-		<tr>
-			<td><%c.getNome(); %></td>
-			<td><%c.getDuracao(); %></td>
-		</tr>
-	<%	
-		}
-	%>
+
 	</table>
 </body>
 </html>

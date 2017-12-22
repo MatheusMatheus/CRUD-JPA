@@ -1,11 +1,14 @@
 package br.com.util;
 
+import java.time.LocalDate;
+
 import br.com.model.Curso;
 import br.com.model.Endereco;
 import br.com.model.PessoaFisica;
 import br.com.model.PessoaJuridica;
 
 public class CriaObjetos {
+	private CriaObjetos() {}
 	public static Endereco criaEnd(String cep, String cidade, String logra, int numero) {
 		Endereco endereco = new Endereco();
 		endereco.setCep(cep);
@@ -22,21 +25,17 @@ public class CriaObjetos {
 		return curso;
 	}
 
-	public static PessoaFisica criaPF(Endereco end, String nome, String tel, String cpf) {
-		PessoaFisica p = new PessoaFisica();
+	public static PessoaFisica criaPF(Endereco end, String nome, String tel, String cpf, String email, LocalDate dtNasc) {
+		PessoaFisica p = new PessoaFisica(nome, tel, email, dtNasc);
 		p.setEndereco(end);
-		p.setNome(nome);
-		p.setTelefone(tel);
 		p.setCpf(cpf);
 		return p;
 	}
 
-	public static PessoaJuridica criaPJ(Endereco end, String nome, String tel, String cnpj) {
-		PessoaJuridica pj = new PessoaJuridica();
+	public static PessoaJuridica criaPJ(Endereco end, String nome, String tel, String cnpj, String email) {
+		PessoaJuridica pj = new PessoaJuridica(nome, tel, email);
 		pj.setCnpj(cnpj);
 		pj.setEndereco(end);
-		pj.setNome(nome);
-		pj.setTelefone(tel);
 		return pj;
 	}
 }
